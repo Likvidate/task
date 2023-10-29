@@ -28,8 +28,18 @@ import Vue from 'vue'
 export default Vue.extend({
   data () {
     return {
-      apiUrl: '',
-      apiUrlError: ''
+      apiUrlError: '',
+      newApiUrl: '' as string
+    }
+  },
+  computed: {
+    apiUrl: {
+      get () {
+        return this.$store.state.apiUrl
+      },
+      set (newApiUrl) {
+        this.$store.commit('setApiUrl', newApiUrl)
+      }
     }
   },
   methods: {
@@ -44,6 +54,7 @@ export default Vue.extend({
 
       if (apiUrlPattern.test(this.apiUrl) || this.apiUrl === '') {
         this.apiUrlError = ''
+        this.apiUrl = this.newApiUrl
       } else {
         this.apiUrlError = 'Invalid API URL'
       }

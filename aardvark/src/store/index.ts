@@ -1,17 +1,21 @@
 import Vue from 'vue'
-import Vuex from 'vuex'
+import Vuex, { StoreOptions } from 'vuex'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+interface RootState {
+  apiUrl: string
+}
+
+const store = new Vuex.Store<RootState>({
   state: {
-  },
-  getters: {
+    apiUrl: 'https://dev-games-backend.advbet.com/v1/ab-roulette/1'
   },
   mutations: {
-  },
-  actions: {
-  },
-  modules: {
+    setApiUrl (state, newApiUrl: string) {
+      state.apiUrl = newApiUrl
+    }
   }
 })
+
+export default store
