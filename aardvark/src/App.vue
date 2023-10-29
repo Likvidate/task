@@ -33,6 +33,12 @@ export default Vue.extend({
     }
   },
   computed: {
+    /**
+     * Computed property for managing the current API URL from the Vuex store.
+     * @property {string} get - Gets the current API URL from the store.
+     * @property {function} set - Sets a new API URL in the store.
+     * @param {string} newApiUrl - The new API URL to be set.
+     */
     apiUrl: {
       get () {
         return this.$store.state.apiUrl
@@ -49,11 +55,12 @@ export default Vue.extend({
      * @returns {void}
      */
     validateApiUrl () {
-      // type definition on needed vue 2 RegExp is auto defined from regular expresion literal
+      // type definition RegExp is auto defined from regular expresion literal
       const apiUrlPattern = /^(https?:\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/
 
       if (apiUrlPattern.test(this.apiUrl) || this.apiUrl === '') {
         this.apiUrlError = ''
+        // Set the API URL to a new value if applicable
         this.apiUrl = this.newApiUrl
       } else {
         this.apiUrlError = 'Invalid API URL'

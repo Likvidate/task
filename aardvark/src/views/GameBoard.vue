@@ -23,6 +23,10 @@ export default Vue.extend({
     }
   },
   computed: {
+    /**
+     * Computed property that gets the current API URL from the Vuex store.
+     * @returns {string} The current API URL.
+     */
     apiUrl: {
       get () {
         return this.$store.state.apiUrl
@@ -33,13 +37,17 @@ export default Vue.extend({
     this.baseBoardConfiguration = await this.loadBaseBoardConfiguration()
   },
   methods: {
+    /**
+     * Fetches the base board configuration from the API.
+     * @returns {Promise<BaseBoardConfiguration>} A promise that resolves to the base board configuration.
+     * If the request fails or an error occurs, a default configuration is returned.
+     * Loading board here because it doesn't need to be constantly updated like other data.
+     */
     async loadBaseBoardConfiguration (): Promise<BaseBoardConfiguration> {
       try {
         const response = await fetch(`${this.apiUrl}/configuration`)
-        console.log(response)
         if (response.ok) {
           const data = await response.json()
-          console.log(data)
           return data
         } else {
           console.error('Failed to fetch data')
