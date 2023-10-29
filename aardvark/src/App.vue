@@ -1,9 +1,13 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
+    <div class="top-navigation">
+      <nav>
+        <ul>
+          <li><router-link to="/" class="button-link">Game Board</router-link></li>
+          <li><router-link to="/statistics" class="button-link">Statistics</router-link></li>
+        </ul>
+      </nav>
+    </div>
     <div class="api-url-input">
       <input
         v-model="apiUrl"
@@ -29,6 +33,11 @@ export default Vue.extend({
     }
   },
   methods: {
+    /**
+     * Validates the API URL input.
+     * @description This function checks if the provided input matches a valid URL pattern.
+     * @returns {void}
+     */
     validateApiUrl () {
       // type definition on needed vue 2 RegExp is auto defined from regular expresion literal
       const apiUrlPattern = /^(https?:\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/
@@ -44,12 +53,15 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  margin: 0;
+  padding: 0;
 }
 
 .api-url-input {
@@ -57,6 +69,7 @@ export default Vue.extend({
   flex-direction: column;
   align-items: center;
   margin-bottom: 20px;
+  margin-top: 10px;
 }
 
 .input-field {
@@ -73,16 +86,37 @@ export default Vue.extend({
   font-size: 12px;
 }
 
-nav {
-  padding: 30px;
+.top-navigation {
+  padding: 10px 0;
 }
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.top-navigation nav {
+  display: flex;
+  justify-content: center;
 }
 
-nav a.router-link-exact-active {
-  color: #42b983;
+.top-navigation ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+}
+
+.top-navigation li {
+  margin: 0 10px;
+}
+
+.button-link {
+  text-decoration: none;
+  color: #fff;
+  background-color: #007bff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button-link:hover {
+  background-color: #0056b3;
 }
 </style>
