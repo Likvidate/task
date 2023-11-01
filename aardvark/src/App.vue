@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div>
     <div class="top-navigation">
       <nav>
         <ul>
@@ -28,8 +28,7 @@ import Vue from 'vue'
 export default Vue.extend({
   data () {
     return {
-      apiUrlError: '',
-      newApiUrl: '' as string
+      apiUrlError: '' as string
     }
   },
   computed: {
@@ -60,8 +59,6 @@ export default Vue.extend({
 
       if (apiUrlPattern.test(this.apiUrl) || this.apiUrl === '') {
         this.apiUrlError = ''
-        // Set the API URL to a new value if applicable
-        this.apiUrl = this.newApiUrl
       } else {
         this.apiUrlError = 'Invalid API URL'
       }
@@ -72,7 +69,7 @@ export default Vue.extend({
 
 <style scoped>
 
-#app {
+/* #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -80,7 +77,7 @@ export default Vue.extend({
   color: #2c3e50;
   margin: 0;
   padding: 0;
-}
+} */
 
 .api-url-input {
   display: flex;
