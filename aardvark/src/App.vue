@@ -1,13 +1,18 @@
 <template>
+  <!-- Main Container for the application -->
   <div>
+    <!-- Top Navigation Bar -->
     <div class="top-navigation">
       <nav>
         <ul>
+          <!-- Route links to navigate between Game Board and Statistics views -->
           <li><router-link to="/" class="button-link">Game Board</router-link></li>
-          <li><router-link to="/statistics" class="button-link">Statistics</router-link></li>
+          <li><router-link to="/statistic" class="button-link">Statistics</router-link></li>
         </ul>
       </nav>
     </div>
+
+    <!-- Input for managing the API URL -->
     <div class="api-url-input">
       <input
         v-model="apiUrl"
@@ -18,6 +23,8 @@
       >
       <div class="error-message" v-if="apiUrlError">{{ apiUrlError }}</div>
     </div>
+
+    <!-- Router view for rendering different application views based on routes -->
     <router-view/>
   </div>
 </template>
@@ -54,13 +61,13 @@ export default Vue.extend({
      * @returns {void}
      */
     validateApiUrl () {
-      // type definition RegExp is auto defined from regular expresion literal
+      // Regular expression pattern to validate URLs
       const apiUrlPattern = /^(https?:\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/
 
       if (apiUrlPattern.test(this.apiUrl) || this.apiUrl === '') {
-        this.apiUrlError = ''
+        this.apiUrlError = '' // Clear the error message if the URL is valid or empty
       } else {
-        this.apiUrlError = 'Invalid API URL'
+        this.apiUrlError = 'Invalid API URL' // Display an error message for an invalid URL
       }
     }
   }
@@ -68,17 +75,7 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-
-/* #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin: 0;
-  padding: 0;
-} */
-
+/* Styling for the API URL input section */
 .api-url-input {
   display: flex;
   flex-direction: column;
@@ -87,6 +84,7 @@ export default Vue.extend({
   margin-top: 10px;
 }
 
+/* Styling for the input field */
 .input-field {
   width: 30%;
   padding: 10px;
@@ -96,11 +94,13 @@ export default Vue.extend({
   margin-bottom: 5px;
 }
 
+/* Styling for error messages */
 .error-message {
   color: #ff0000;
   font-size: 12px;
 }
 
+/* Styling for the top navigation bar */
 .top-navigation {
   padding: 10px 0;
 }
@@ -120,6 +120,7 @@ export default Vue.extend({
   margin: 0 10px;
 }
 
+/* Styling for the route link buttons */
 .button-link {
   text-decoration: none;
   color: #fff;
